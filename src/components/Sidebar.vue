@@ -11,9 +11,8 @@
       </div>
 
       <div class="action_button">
-        <ion-button>
-          <!-- <ion-icon slot="start" :icon="add"></ion-icon> -->
-          Offline
+        <ion-button :class="[connected ? 'online' : 'offline']">
+          {{ connected ? "Online" : "Offline" }}
         </ion-button>
       </div>
       <div class="von">
@@ -84,10 +83,20 @@ export default {
       home,
       add,
       exit,
+      connected: navigator.onLine,
     };
   },
 
   methods: {
+    handleConnectionChange() {
+      console.log("hello");
+      window.addEventListener("offline", () => {
+        this.connected = false;
+      });
+      window.addEventListener("online", () => {
+        this.connected = true;
+      });
+    },
     signOut() {
       firebase
         .auth()
@@ -97,6 +106,10 @@ export default {
           this.$router.go({ path: "login" });
         });
     },
+  },
+
+  created() {
+    this.handleConnectionChange();
   },
 };
 </script>
@@ -124,8 +137,15 @@ export default {
 ion-button {
   text-transform: capitalize;
   font-weight: 300;
-  --background: #6c63ff;
+
   --border-radius: 3px;
+}
+
+.online {
+  --background: #6c63ff;
+}
+.offline {
+  --background: #97969e;
 }
 ion-icon {
   margin-right: 1px;
