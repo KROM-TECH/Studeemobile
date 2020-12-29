@@ -14,7 +14,7 @@
         <ion-button :class="[connected ? 'online' : 'offline']">
           {{ connected ? "Online" : "Offline" }}
         </ion-button>
-      </div>
+      </div> 
       <div class="von">
         <ion-list class="menu_items" lines="none">
           <router-link to="/home">
