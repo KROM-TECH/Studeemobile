@@ -3,6 +3,7 @@
     <ion-header :translucent="true" v-if="show">
       <ion-toolbar>
         <ion-title>{{ $route.name }}</ion-title>
+
         <ion-buttons slot="start">
           <ion-menu-button menu="main-menu"> </ion-menu-button>
         </ion-buttons>
@@ -36,9 +37,6 @@ export default {
         return true;
       }
     },
-  },
-  created() {
-    console.log(this.$route.meta.requiresGuest);
   },
 };
 </script>

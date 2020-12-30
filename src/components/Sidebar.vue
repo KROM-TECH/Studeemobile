@@ -14,7 +14,7 @@
         <ion-button :class="[connected ? 'online' : 'offline']">
           {{ connected ? "Online" : "Offline" }}
         </ion-button>
-      </div> 
+      </div>
       <div class="von">
         <ion-list class="menu_items" lines="none">
           <router-link to="/home">
@@ -22,27 +22,27 @@
           </router-link>
 
           <router-link to="/pastquestions">
-            <ion-item> <ion-icon :icon="home"></ion-icon> Past Questions </ion-item>
+            <ion-item> <ion-icon :icon="book"></ion-icon> Past Questions </ion-item>
           </router-link>
 
           <router-link to="/courses">
-            <ion-item> <ion-icon :icon="home"></ion-icon> Course Outline </ion-item>
+            <ion-item> <ion-icon :icon="newspaper"></ion-icon> Course Outline </ion-item>
           </router-link>
 
           <router-link class="box" to="/tutor">
-            <ion-item> <ion-icon :icon="home"></ion-icon> Find a Tutor </ion-item>
+            <ion-item> <ion-icon :icon="people"></ion-icon> Find a Tutor </ion-item>
           </router-link>
 
           <router-link class="box" to="/profile">
-            <ion-item> <ion-icon :icon="home"></ion-icon> Profile </ion-item>
+            <ion-item> <ion-icon :icon="personCircle"></ion-icon> Profile </ion-item>
           </router-link>
 
           <router-link class="box" to="/questions">
-            <ion-item> <ion-icon :icon="home"></ion-icon> Ask Questions </ion-item>
+            <ion-item> <ion-icon :icon="helpCircle"></ion-icon> Ask Questions </ion-item>
           </router-link>
 
           <router-link class="box" to="/chat">
-            <ion-item> <ion-icon :icon="home"></ion-icon> Chat </ion-item>
+            <ion-item> <ion-icon :icon="chatbubbles"></ion-icon> Chat </ion-item>
           </router-link>
 
           <router-link class="box" to="/market">
@@ -50,10 +50,10 @@
           </router-link>
 
           <router-link class="box" to="/tte">
-            <ion-item> <ion-icon :icon="home"></ion-icon> T/T/E </ion-item>
+            <ion-item> <ion-icon :icon="hourglass"></ion-icon> T/T/E </ion-item>
           </router-link>
 
-          <div class="row">
+          <div class="row" style="cursor:pointer">
             <ion-item @click="signOut"> <ion-icon :icon="exit"></ion-icon> Sign Out </ion-item>
           </div>
         </ion-list>
@@ -66,7 +66,18 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import { IonIcon, IonLabel, IonContent, IonButton, IonMenu, IonItem, IonList } from "@ionic/vue";
-import { add, home, exit } from "ionicons/icons";
+import {
+  add,
+  home,
+  exit,
+  book,
+  people,
+  newspaper,
+  personCircle,
+  helpCircle,
+  chatbubbles,
+  hourglass,
+} from "ionicons/icons";
 export default {
   name: "Menu",
   components: {
@@ -83,13 +94,19 @@ export default {
       home,
       add,
       exit,
+      book,
+      people,
+      newspaper,
+      personCircle,
+      helpCircle,
+      chatbubbles,
+      hourglass,
       connected: navigator.onLine,
     };
   },
 
   methods: {
     handleConnectionChange() {
-      console.log("hello");
       window.addEventListener("offline", () => {
         this.connected = false;
       });
@@ -102,7 +119,7 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          //   this.$store.commit("clearUserData");
+          this.$store.commit("logOut");
           this.$router.go({ path: "login" });
         });
     },

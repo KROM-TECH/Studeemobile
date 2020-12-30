@@ -46,13 +46,18 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
+
 firebase.getCurrentUser = () => {
+  if(store.state.user){
+    return  store.state.user
+  }else{
   return new Promise((resolve, reject) => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       unsubscribe();
       resolve(user);
     }, reject);
   });
+}
 };
 
 const app = createApp(App)

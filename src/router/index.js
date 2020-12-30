@@ -53,23 +53,25 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   if (requiresAuth && !(await firebase.getCurrentUser())) {
-    console.log(firebase.getCurrentUser());
     next({ name: "Login" });
-  } else if (
-    to.matched.some(record => record.meta.requiresAuth) &&
-    !firebase.auth().currentUser.emailVerified
-  ) {
-    next({
-      name: "Verify"
-    });
-  } else if (
+  } 
+  else if (
     to.matched.some(record => record.meta.requiresGuest) &&
     (await firebase.getCurrentUser())
   ) {
     next({
       name: "Home"
     });
-  } else next();
+  }
+  else if (requiresAuth && !(await firebase.getCurrentUser().emailVerified)) {
+ 
+      next({
+        name: "Verify"
+      });
+  }  
+  else{
+    next(); 
+  }
 });
 
 export default router

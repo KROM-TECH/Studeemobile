@@ -1,13 +1,12 @@
 <template>
   <div>
-    <Menu />
     <Loader v-if="loader" />
     <div class="content">
       <img class="responsive-img" src="@/assets/auth/verify.svg" alt="" />
       <h2 style="margin:0" class="center">
         verify your Email to Proceed
       </h2>
-      <button v-if="user" class="btn Obtn " @click="verify">Verify</button>
+      <button v-if="btn" class="btn Obtn " @click="verify">Verify</button>
       <p v-else class="center pur-text">{{ msg }}</p>
     </div>
   </div>
@@ -17,17 +16,15 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import Loader from "@/components/Loader";
-import Menu from "@/components/Menu";
 export default {
   components: {
     Loader,
-    Menu,
   },
   data() {
     return {
       msg: "",
       loader: false,
-      user: null,
+      btn: true,
     };
   },
   methods: {
@@ -37,7 +34,7 @@ export default {
         .auth()
         .currentUser.sendEmailVerification()
         .then(() => {
-          console.log(firebase.auth().currentUser.Email);
+          console.log(firebase.auth().currentUser);
           this.loader = false;
           this.btn = false;
           this.msg = `A Verification Link has been sent to Your Email `;
@@ -45,16 +42,17 @@ export default {
         .catch((error) => {
           console.log(error.message);
           this.loader = false;
-          this.user = false;
+          this.btn = true;
           this.msg = `Something went wrong, check your network and then reload the page`;
         });
     },
   },
-  created() {
+  mounted() {
     if (!firebase.auth().currentUser) {
       this.$router.push({ path: "login" });
     } else {
       this.user = firebase.auth().currentUser;
+      console.log("llle");
       console.log(this.user);
     }
   },
