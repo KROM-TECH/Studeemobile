@@ -1,5 +1,6 @@
 <template>
   <div>
+    <coming-soon />
     <main>
       <img src="@/assets/general/Female.png" style="width:12rem" alt="" />
       <div class="dotsContainer">
@@ -7,6 +8,7 @@
         <span id="dot2" :class="{ listening_style: listening }"></span>
         <span id="dot3" :class="{ listening_style: listening }"></span>
       </div>
+
       <div class="talk-box">
         <h3>Hi, Anon</h3>
         <div class="chat_container">
@@ -27,7 +29,9 @@
 </template>
 
 <script>
+import ComingSoon from "@/components/ComingSoon.vue";
 export default {
+  components: { ComingSoon },
   data() {
     return {
       listening: false,
