@@ -114,7 +114,7 @@ export default {
         this.connected = true;
       });
     },
-    signOut() {
+    signOut() { 
       firebase
         .auth()
         .signOut()

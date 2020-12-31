@@ -8,11 +8,7 @@ import general from "./general";
 import auth from "./auth";
 
 const routes = [
-  {
-    path: '/',
-    redirect: '/home'
-  },
-  ...tutorRoutes,
+   ...tutorRoutes,
   ...askQuestionsRoutes,
   ...tte,
   ...general,

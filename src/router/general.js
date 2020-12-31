@@ -1,4 +1,4 @@
-export default [
+export default [ 
   {
     path: "/",
     name: "Landing",
@@ -43,6 +43,14 @@ export default [
     path: "/profile",
     name: "Your Profile",
     component: () => import("@/views/general/Profile.vue"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/notifications",
+    name: "Notification",
+    component: () => import("@/views/general/Notifications.vue"),
     meta: {
       requiresAuth: true
     }

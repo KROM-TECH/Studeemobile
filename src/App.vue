@@ -7,6 +7,14 @@
         <ion-buttons slot="start">
           <ion-menu-button menu="main-menu"> </ion-menu-button>
         </ion-buttons>
+
+        <ion-buttons slot="end">
+          <ion-button>
+            <router-link to="/notifications">
+              <ion-icon :icon="notifications" class="IonSize"></ion-icon>
+            </router-link>
+          </ion-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <SideBar />
@@ -16,7 +24,17 @@
 
 <script>
 import SideBar from "@/components/Sidebar.vue";
-import { IonApp, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton } from "@ionic/vue";
+import { notifications } from "ionicons/icons";
+import {
+  IonApp,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonButtons,
+  IonMenuButton,
+  IonButton,
+  IonIcon,
+} from "@ionic/vue";
 export default {
   name: "App",
   components: {
@@ -27,6 +45,14 @@ export default {
     IonButtons,
     IonMenuButton,
     SideBar,
+    IonButton,
+    IonIcon,
+  },
+
+  data() {
+    return {
+      notifications,
+    };
   },
 
   computed: {

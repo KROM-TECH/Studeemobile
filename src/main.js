@@ -53,6 +53,11 @@ firebase.getCurrentUser = () => {
   }else{
   return new Promise((resolve, reject) => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      console.log(user)
+      if(user){
+        store.commit("loginUser", user);
+      }
+      
       unsubscribe();
       resolve(user);
     }, reject);

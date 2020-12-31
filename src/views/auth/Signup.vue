@@ -29,30 +29,30 @@
 
           <div class="social">
             <button class="btn-large" style="border: 2px solid #b23121; color:#b23121">
-              <img
+              <!-- <img
                 src="@/assets/auth/google-icon.svg"
                 class="res-img book"
                 style="width:20px; margin-right:8%"
                 alt=""
-              />
+              /> -->
               Google
             </button>
             <button class="btn-large" style="border: 2px solid #00acee; color:#00acee">
-              <img
+              <!-- <img
                 src="@/assets/auth/twitter-icon.svg"
                 class="res-img book"
                 style="width:20px; margin-right:8%"
                 alt=""
-              />
+              /> -->
               Twitter
             </button>
             <button class="btn-large" style="border: 1px solid #3b5998; color:#3b5998">
-              <img
+              <!-- <img
                 src="@/assets/auth/facebook-icon.svg"
                 class="res-img book"
                 style="width:20px; margin-right:8%"
                 alt=""
-              />
+              /> -->
               Facebook
             </button>
           </div>
