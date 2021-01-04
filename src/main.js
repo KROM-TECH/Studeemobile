@@ -8,6 +8,7 @@ import App from './App.vue'
 import router from './router';
 import store from './store';
 
+
 import { IonicVue } from '@ionic/vue';
 
 /* Core CSS required for Ionic components to work properly */

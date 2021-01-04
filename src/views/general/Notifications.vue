@@ -1,28 +1,54 @@
 <template>
+  <notification-cards :showModal="showModal" Details="the scumbag" @close="showModal = false" />
   <div>
     <main>
       <h4>Get updated about new features and incoming changes</h4>
       <ion-card class="CS">
         <h2>Home</h2>
       </ion-card>
+
+      <div class="dis" id="disqus_thread"></div>
     </main>
   </div>
 </template>
 
 <script>
 import { IonCard } from "@ionic/vue";
+import NotificationCards from "@/components/NotificationCards.vue";
 export default {
-  components: { IonCard },
+  components: { IonCard, NotificationCards },
   data() {
     return {
-      showModal: false,
+      showModal: true,
+      contents: [{ name: "Home", Details: "jagons" }],
     };
   },
   methods: {},
+  mounted() {
+    //     var disqus_config = function () {
+    // this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    // this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    // };
+    (function() {
+      // DON'T EDIT BELOW THIS LINE
+      var d = document,
+        s = d.createElement("script");
+      s.src = "https://kromtech.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  },
 };
 </script>
 
 <style scoped>
+main {
+  text-align: center;
+}
+.dis {
+  background-color: transparent;
+  width: 80vw !important;
+}
 h2 {
   margin: 0;
   padding: 0;
