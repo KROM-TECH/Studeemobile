@@ -1,10 +1,15 @@
 <template>
-  <notification-cards :showModal="showModal" Details="the scumbag" @close="showModal = false" />
+  <notification-cards :showModal="showModal" :Details="Details" @close="showModal = false" />
   <div>
     <main>
       <h4>Get updated about new features and incoming changes</h4>
-      <ion-card class="CS">
-        <h2>Home</h2>
+      <ion-card
+        class="CS"
+        v-for="(content, index) in contents"
+        :key="index"
+        @click="showDetails(content.details)"
+      >
+        <h2>{{ content.name }}</h2>
       </ion-card>
 
       <div class="dis" id="disqus_thread"></div>
@@ -19,11 +24,27 @@ export default {
   components: { IonCard, NotificationCards },
   data() {
     return {
-      showModal: true,
-      contents: [{ name: "Home", Details: "jagons" }],
+      Details: "",
+      showModal: false,
+      contents: [
+        { name: "Home", details: "jagons" },
+        { name: "Past Questions", details: "Past Questions jagons" },
+        { name: "Course Outline", details: "Course Outline jagons" },
+        { name: "Find a Tutor", details: "Find a Tutor jagons" },
+        { name: "Profile", details: "Profile jagons" },
+        { name: "Ask Questions", details: "Ask Questions jagons" },
+        { name: "Chat", details: "Chat jagons" },
+        { name: "Market Place", details: "Market Place jagons" },
+        { name: "T/T/E", details: "T/T/E jagons" },
+      ],
     };
   },
-  methods: {},
+  methods: {
+    showDetails(details) {
+      this.Details = details;
+      this.showModal = true;
+    },
+  },
   mounted() {
     //     var disqus_config = function () {
     // this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
