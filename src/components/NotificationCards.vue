@@ -22,8 +22,8 @@ export default {
 .bg {
   position: fixed;
   background-color: rgba(41, 37, 37, 0.568);
-  min-width: 100vw;
-  min-height: 100vh;
+  min-width: 100%;
+  min-height: 400%;
   z-index: 10;
   display: flex;
   justify-content: center;

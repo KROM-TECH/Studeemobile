@@ -17,6 +17,7 @@
       </div>
       <div class="von">
         <ion-list class="menu_items" lines="none">
+          <h1 @click="openFirst">doo</h1>
           <router-link to="/home">
             <ion-item> <ion-icon :icon="home"></ion-icon> Home </ion-item>
           </router-link>
@@ -65,7 +66,16 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/auth";
-import { IonIcon, IonLabel, IonContent, IonButton, IonMenu, IonItem, IonList } from "@ionic/vue";
+import {
+  IonIcon,
+  IonLabel,
+  IonContent,
+  IonButton,
+  IonMenu,
+  IonItem,
+  IonList,
+  menuController,
+} from "@ionic/vue";
 import {
   add,
   home,
@@ -106,6 +116,9 @@ export default {
   },
 
   methods: {
+    openFirst() {
+      menuController.close("main-menu");
+    },
     handleConnectionChange() {
       window.addEventListener("offline", () => {
         this.connected = false;
@@ -114,7 +127,7 @@ export default {
         this.connected = true;
       });
     },
-    signOut() { 
+    signOut() {
       firebase
         .auth()
         .signOut()
