@@ -2,8 +2,7 @@
   <transition name="slide" appear>
     <div class="bg" v-if="showModal" @click="$emit('close')">
       <ion-card class="card">
-        <!-- <img src="@/assets/mark.svg" class="img" alt="" /> -->
-        <p>{{ Details }}</p>
+        <p v-html="Details"></p>
       </ion-card>
     </div>
   </transition>
@@ -19,11 +18,14 @@ export default {
 </script>
 
 <style scoped>
+p {
+  font-size: 1rem;
+}
 .bg {
   position: fixed;
   background-color: rgba(41, 37, 37, 0.568);
   min-width: 100%;
-  min-height: 400%;
+  min-height: 300%;
   z-index: 10;
   display: flex;
   justify-content: center;
@@ -33,7 +35,10 @@ export default {
   width: 100px;
 }
 .card {
-  min-width: 310px;
+  margin-top: 5rem;
+  padding: 1rem;
+  width: 420px;
+  max-width: 95vw;
   display: flex;
   justify-content: center;
   align-items: center;

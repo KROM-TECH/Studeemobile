@@ -17,7 +17,6 @@
       </div>
       <div class="von">
         <ion-list class="menu_items" lines="none">
-          <h1 @click="openFirst">doo</h1>
           <router-link to="/home">
             <ion-item> <ion-icon :icon="home"></ion-icon> Home </ion-item>
           </router-link>
@@ -114,11 +113,17 @@ export default {
       connected: navigator.onLine,
     };
   },
-
-  methods: {
-    openFirst() {
+  computed: {
+    changes() {
+      return this.$store.state.menu;
+    },
+  },
+  watch: {
+    changes() {
       menuController.close("main-menu");
     },
+  },
+  methods: {
     handleConnectionChange() {
       window.addEventListener("offline", () => {
         this.connected = false;

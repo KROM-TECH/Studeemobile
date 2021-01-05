@@ -4,9 +4,30 @@ const store = createStore({
   state: {
     timetable: [],
     user: JSON.parse(localStorage.getItem('user')),
-    verified:localStorage.getItem("verified")
+    verified:localStorage.getItem("verified"),
+    menu:false
   },
   mutations: {
+    changeMenu(state){
+      const mobileCheck = ()=> {
+        const toMatch = [
+            /Android/i,
+            /webOS/i,
+            /iPhone/i,
+     
+        ];
+    
+        return toMatch.some((toMatchItem) => {
+            return navigator.userAgent.match(toMatchItem);
+        });
+    }
+      if(mobileCheck){
+        state.menu = !state.menu
+      }else{
+        return null
+      }
+      
+    },
     updateTimetable(state) {
       state.timetable = JSON.parse(localStorage.getItem("timeTable"));
     },

@@ -6,6 +6,7 @@ import askQuestionsRoutes from "./askQuestions";
 import tte from "./tte";
 import general from "./general";
 import auth from "./auth";
+import store from '@/store';
 
 const routes = [
    ...tutorRoutes,
@@ -67,6 +68,7 @@ router.beforeEach(async (to, from, next) => {
   }  
   else{
     next(); 
+    store.commit("changeMenu")
   }
 });
 

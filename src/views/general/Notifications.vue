@@ -20,23 +20,14 @@
 <script>
 import { IonCard } from "@ionic/vue";
 import NotificationCards from "@/components/NotificationCards.vue";
+import contents from "@/helpers/CS_Details.js";
 export default {
   components: { IonCard, NotificationCards },
   data() {
     return {
       Details: "",
       showModal: false,
-      contents: [
-        { name: "Home", details: "jagons" },
-        { name: "Past Questions", details: "Past Questions jagons" },
-        { name: "Course Outline", details: "Course Outline jagons" },
-        { name: "Find a Tutor", details: "Find a Tutor jagons" },
-        { name: "Profile", details: "Profile jagons" },
-        { name: "Ask Questions", details: "Ask Questions jagons" },
-        { name: "Chat", details: "Chat jagons" },
-        { name: "Market Place", details: "Market Place jagons" },
-        { name: "T/T/E", details: "T/T/E jagons" },
-      ],
+      contents,
     };
   },
   methods: {
@@ -77,6 +68,7 @@ h2 {
 .CS {
   background-color: #72727e;
   color: white;
+  cursor: pointer;
 }
 ion-card {
   padding: 0.3rem;
