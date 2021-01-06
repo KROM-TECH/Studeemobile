@@ -3,6 +3,7 @@ import "firebase/auth";
 import "firebase/firestore";
 import "firebase/analytics";
 
+
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';

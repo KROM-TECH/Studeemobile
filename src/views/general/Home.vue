@@ -42,9 +42,6 @@ export default {
       this.listening = !this.listening;
     },
   },
-  created() {
-    console.log(this.$store.state);
-  },
 };
 </script>
 <style scoped>

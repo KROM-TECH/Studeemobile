@@ -17,6 +17,9 @@
       </div>
       <div class="von">
         <ion-list class="menu_items" lines="none">
+          <div class="row" style="cursor:pointer" v-if="deferredPrompt" @click="promptInstall">
+            <ion-item class="download"> <ion-icon :icon="download"></ion-icon> Install </ion-item>
+          </div>
           <router-link to="/home">
             <ion-item> <ion-icon :icon="home"></ion-icon> Home </ion-item>
           </router-link>
@@ -86,6 +89,7 @@ import {
   helpCircle,
   chatbubbles,
   hourglass,
+  download,
 } from "ionicons/icons";
 export default {
   name: "Menu",
@@ -100,6 +104,7 @@ export default {
   },
   data() {
     return {
+      deferredPrompt: "",
       home,
       add,
       exit,
@@ -110,6 +115,7 @@ export default {
       helpCircle,
       chatbubbles,
       hourglass,
+      download,
       connected: navigator.onLine,
     };
   },
@@ -124,6 +130,21 @@ export default {
     },
   },
   methods: {
+    checkPWA() {
+      window.addEventListener("appinstalled", () => {
+        console.log("INSTALL: Success");
+        this.deferredPrompt = false;
+      });
+    },
+    listenForInstall() {
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        this.deferredPrompt = e;
+      });
+    },
+    promptInstall() {
+      this.deferredPrompt.prompt();
+    },
     handleConnectionChange() {
       window.addEventListener("offline", () => {
         this.connected = false;
@@ -145,11 +166,54 @@ export default {
 
   created() {
     this.handleConnectionChange();
+    this.listenForInstall();
+    this.checkPWA();
   },
 };
 </script>
 
 <style scoped>
+.download {
+  --background: #6c63ff;
+  color: white;
+  /* box-shadow: 1px 1px 0 #1d8758, 0 0 20px 5px #c0ffe4, inset 2px 2px 0 #d3ffec; */
+  animation: glow 1s infinite forwards;
+}
+
+/* animates box shadow glow effect */
+@keyframes glow {
+  0% {
+    box-shadow: 1px 1px #6c63ff, 0 0 20px 5px #8b86df, inset 2px 2px #aba9d3;
+  }
+  50% {
+    box-shadow: 1px 1px #6c63ff, 0 0 16px 8px #8b86df, inset 2px 2px #aba9d3;
+  }
+  /* 100% {
+    box-shadow: 1px 1px #1d8758, 0 0 20px 5px #8fffcf, inset 2px 2px #d3ffec;
+  } */
+}
+/* animates light across diamond */
+@keyframes sheen {
+  0%,
+  100% {
+    left: 0;
+    opacity: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  10% {
+    left: calc(100% - 4px);
+  }
+  11%,
+  98% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+.download ion-icon {
+  color: white !important;
+}
 .action_button {
   display: flex;
   justify-content: center;
