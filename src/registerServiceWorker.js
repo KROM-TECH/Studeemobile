@@ -2,6 +2,19 @@
 /*eslint no-constant-condition: "off"*/
 
 import { register } from "register-service-worker";
+
+import { offlineFallback, staticResourceCache,pageCache, imageCache, googleFontsCache  } from 'workbox-recipes';
+// import { precacheAndRoute } from 'workbox-precaching';
+
+
+// precacheAndRoute(self.__WB_MANIFEST);
+
+offlineFallback();
+staticResourceCache();
+pageCache();
+imageCache();
+googleFontsCache();
+
 // process.env.NODE_ENV === "production"
 if (true) {
   register(`${process.env.BASE_URL}sw.js`, {

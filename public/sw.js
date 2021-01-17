@@ -1,10 +1,13 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 
+console.log('Done with all the Extension')
+
+
 const staticCacheName = 'site-static-v4';
 const dynamicCacheName = 'site-dynamic-v4';
 
-
+// workbox.precaching.precacheAndRoute(self.__precacheManifest);
 self.addEventListener('install', (evt) => {
     // console.log('service worker has been installed' )
   
