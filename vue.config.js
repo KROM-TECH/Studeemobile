@@ -1,5 +1,23 @@
+const SWPrecache = require('sw-precache-webpack-plugin')
+
 module.exports = {
     // ...other vue-cli plugin options...
+    configureWebpack: config => {
+      if (process.env.NODE_ENV === 'production') {
+          config.plugins.push(
+              new SWPrecache({
+                  cacheId: 'nhb-year-in-pixels',
+                  filepath: 'dist/service-worker.js',
+                  staticFileGlobs: [
+                      'dist/*',
+                      'dist/**/*',
+                  ],
+                  stripPrefix: 'dist/',
+                  maximumFileSizeToCacheInBytes: 3097152,
+              })
+          )
+      }
+  },
     pwa: {
       name: 'Studee',
       themeColor: '#6c63ff',

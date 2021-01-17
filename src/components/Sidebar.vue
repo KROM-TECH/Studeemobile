@@ -119,6 +119,7 @@ export default {
       connected: navigator.onLine,
     };
   },
+
   computed: {
     changes() {
       return this.$store.state.menu;
@@ -129,6 +130,7 @@ export default {
       menuController.close("main-menu");
     },
   },
+
   methods: {
     checkPWA() {
       window.addEventListener("appinstalled", () => {
