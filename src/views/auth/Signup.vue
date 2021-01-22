@@ -9,7 +9,7 @@
         <p class="err">{{ Error }}</p>
         <form @submit.prevent="handleSubmit">
           <div class="form-input">
-            <label> Username</label>
+            <label> Email</label>
             <input type="text" v-model="Email" placeholder="Enter your Username" />
           </div>
 
@@ -28,31 +28,28 @@
           <p class="alt-text">Login With</p>
 
           <div class="social">
-            <button class="btn-large" style="border: 2px solid #b23121; color:#b23121">
-              <!-- <img
-                src="@/assets/auth/google-icon.svg"
-                class="res-img book"
-                style="width:20px; margin-right:8%"
-                alt=""
-              /> -->
+            <button
+              type="button"
+              class="btn-large"
+              style="border: 2px solid #b23121; color:#b23121"
+              @click="google()"
+            >
               Google
             </button>
-            <button class="btn-large" style="border: 2px solid #00acee; color:#00acee">
-              <!-- <img
-                src="@/assets/auth/twitter-icon.svg"
-                class="res-img book"
-                style="width:20px; margin-right:8%"
-                alt=""
-              /> -->
+            <button
+              type="button"
+              class="btn-large"
+              style="border: 2px solid #00acee; color:#00acee"
+              @click="twitter()"
+            >
               Twitter
             </button>
-            <button class="btn-large" style="border: 1px solid #3b5998; color:#3b5998">
-              <!-- <img
-                src="@/assets/auth/facebook-icon.svg"
-                class="res-img book"
-                style="width:20px; margin-right:8%"
-                alt=""
-              /> -->
+            <button
+              type="button"
+              class="btn-large"
+              style="border: 1px solid #3b5998; color:#3b5998"
+              @click="facebook()"
+            >
               Facebook
             </button>
           </div>
@@ -92,6 +89,55 @@ export default {
           const user = firebase.auth().currentUser;
           this.$store.commit("loginUser", user);
           this.$router.push({ path: "/verify" });
+        })
+        .catch((error) => {
+          this.loader = false;
+          console.log(error.message);
+          this.Error = error.message;
+        });
+    },
+
+    google() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(() => {
+          const user = firebase.auth().currentUser;
+          this.$store.commit("loginUser", user);
+          this.$router.push({ path: "/home" });
+        })
+        .catch((error) => {
+          this.loader = false;
+          console.log(error.message);
+          this.Error = error.message;
+        });
+    },
+    twitter() {
+      const provider = new firebase.auth.TwitterAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(() => {
+          const user = firebase.auth().currentUser;
+          this.$store.commit("loginUser", user);
+          this.$router.push({ path: "/home" });
+        })
+        .catch((error) => {
+          this.loader = false;
+          console.log(error.message);
+          this.Error = error.message;
+        });
+    },
+    facebook() {
+      const provider = new firebase.auth.FacebookAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(() => {
+          const user = firebase.auth().currentUser;
+          this.$store.commit("loginUser", user);
+          this.$router.push({ path: "/home" });
         })
         .catch((error) => {
           this.loader = false;
