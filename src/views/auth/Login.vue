@@ -131,6 +131,7 @@ export default {
     },
     facebook() {
       const provider = new firebase.auth.FacebookAuthProvider();
+      provider.addScope("email");
       firebase
         .auth()
         .signInWithPopup(provider)

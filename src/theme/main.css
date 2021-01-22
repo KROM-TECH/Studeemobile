@@ -3,6 +3,9 @@
   font-family: "Lato", sans-serif;
   transition: 0.3s;
 }
+button {
+  outline: none !important;
+}
 .badge {
   border-radius: 0.2rem;
   font-size: 12px;
