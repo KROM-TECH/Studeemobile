@@ -6,7 +6,7 @@
       <h2 style="margin:0" class="center">
         verify your Email to Proceed
       </h2>
-      <button v-if="!btn" class="btn Obtn " @click="verify">Verify</button>
+      <button v-if="btn" class="btn Obtn " @click="verify">Verify</button>
       <p v-else class="center pur-text" v-html="msg"></p>
     </div>
   </div>
