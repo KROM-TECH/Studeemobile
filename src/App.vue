@@ -35,6 +35,8 @@ import {
   IonButton,
   IonIcon,
 } from "@ionic/vue";
+
+
 export default {
   name: "App",
   components: {
